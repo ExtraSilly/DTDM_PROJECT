@@ -1,0 +1,65 @@
+2025-04-30 09:32:57,580 - __main__ - INFO - Created output directory: db_schema_ticket_data
+2025-04-30 09:32:57,582 - __main__ - INFO - Reading data from processed_ticket_data\processed_tickets.csv
+2025-04-30 09:32:57,726 - __main__ - INFO - Successfully read processed data: 35378 records
+2025-04-30 09:32:57,727 - __main__ - INFO - Columns in data: orderid, cashier, saledate, total, customerid, ticketcode, date, time, slot, room, film, slot_type, ticket_type, ticket_price, popcorn, processed_at
+2025-04-30 09:32:57,741 - __main__ - INFO - Sample data (first 5 rows):
+2025-04-30 09:32:57,829 - __main__ - INFO - 
+Ticket types distribution:
+2025-04-30 09:32:57,830 - __main__ - INFO - Thành viên: 4451 unique customers
+2025-04-30 09:32:57,834 - __main__ - INFO - Tickets table: 35378 records
+2025-04-30 09:32:57,834 - __main__ - INFO - Sales table: 35378 records
+2025-04-30 09:32:57,835 - __main__ - INFO - Films table: 19 records
+2025-04-30 09:32:57,835 - __main__ - INFO - Rooms table: 4 records
+2025-04-30 09:32:57,835 - __main__ - INFO - Film-Room relationship table: 59 records
+2025-04-30 09:32:57,836 - __main__ - INFO - Ticket types table: 1 records
+2025-04-30 09:32:57,836 - __main__ - INFO - Seat types table: 2 records
+2025-04-30 09:32:57,836 - __main__ - INFO - Sample data from tickets table:
+2025-04-30 09:32:57,842 - __main__ - INFO - Sample data from films table:
+2025-04-30 09:32:58,034 - __main__ - INFO - Saved tickets.csv: 35378 records
+2025-04-30 09:32:58,035 - __main__ - INFO - File tickets.csv created with size: 5532284 bytes
+2025-04-30 09:32:58,051 - __main__ - INFO - Sample data from saved file tickets.csv:
+2025-04-30 09:32:58,129 - __main__ - INFO - Saved sales.csv: 35378 records
+2025-04-30 09:32:58,130 - __main__ - INFO - File sales.csv created with size: 1891745 bytes
+2025-04-30 09:32:58,144 - __main__ - INFO - Sample data from saved file sales.csv:
+2025-04-30 09:32:58,146 - __main__ - INFO -             orderid cashier             saledate    total
+0  10006052019B0225  emp002  2019-05-06 16:40:43  90000.0
+1  10006052019B0225  emp002  2019-05-06 16:40:43  90000.0
+2  10022052019B0167  emp011  2019-05-22 20:30:28  90000.0
+3  10022052019B0167  emp011  2019-05-22 20:30:28  90000.0
+4  10130052019B0141  emp005  2019-05-30 19:28:44  90000.0
+2025-04-30 09:32:58,148 - __main__ - INFO - Saved films.csv: 19 records
+2025-04-30 09:32:58,149 - __main__ - INFO - File films.csv created with size: 675 bytes
+2025-04-30 09:32:58,159 - __main__ - INFO - Sample data from saved file films.csv:
+2025-04-30 09:32:58,165 - __main__ - INFO - Saved rooms.csv: 4 records
+2025-04-30 09:32:58,166 - __main__ - INFO - File rooms.csv created with size: 34 bytes
+2025-04-30 09:32:58,179 - __main__ - INFO - Sample data from saved file rooms.csv:
+2025-04-30 09:32:58,180 - __main__ - INFO -    room  room_id
+0     3        1
+1     2        2
+2     1        3
+3     4        4
+2025-04-30 09:32:58,182 - __main__ - INFO - Saved film_room.csv: 59 records
+2025-04-30 09:32:58,183 - __main__ - INFO - File film_room.csv created with size: 337 bytes
+2025-04-30 09:32:58,195 - __main__ - INFO - Sample data from saved file film_room.csv:
+2025-04-30 09:32:58,197 - __main__ - INFO -    film_id  room_id
+0        1        1
+1        2        2
+2        3        3
+3        2        4
+4        1        3
+2025-04-30 09:32:58,200 - __main__ - INFO - Saved ticket_types.csv: 1 records
+2025-04-30 09:32:58,200 - __main__ - INFO - File ticket_types.csv created with size: 48 bytes
+2025-04-30 09:32:58,214 - __main__ - INFO - Sample data from saved file ticket_types.csv:
+2025-04-30 09:32:58,216 - __main__ - INFO -   ticket_type  count  type_id
+0  Thành viên   4451        1
+2025-04-30 09:32:58,219 - __main__ - INFO - Saved seat_types.csv: 2 records
+2025-04-30 09:32:58,220 - __main__ - INFO - File seat_types.csv created with size: 42 bytes
+2025-04-30 09:32:58,233 - __main__ - INFO - Sample data from saved file seat_types.csv:
+2025-04-30 09:32:58,269 - __main__ - INFO - Saved film_detailed_analysis.csv: 19 records
+2025-04-30 09:32:58,270 - __main__ - INFO - File film_detailed_analysis.csv created with size: 2025 bytes
+2025-04-30 09:32:58,281 - __main__ - INFO - Sample data from saved file film_detailed_analysis.csv:
+2025-04-30 09:32:58,287 - __main__ - INFO - 
+Film Detailed Analysis Sample:
+2025-04-30 09:32:58,294 - __main__ - INFO - Generated schema documentation
+2025-04-30 09:32:58,295 - __main__ - INFO - Data conversion completed successfully
+2025-04-30 09:32:58,300 - __main__ - INFO - Script completed successfully

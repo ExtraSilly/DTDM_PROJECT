@@ -1,0 +1,62 @@
+
+Database Schema Documentation for Ticket System
+
+1. Tickets Table
+---------------
+- orderid: Primary key
+- customerid: Customer identifier
+- ticketcode: Unique ticket code
+- date: Show date
+- time: Show time
+- slot: Time slot
+- room: Room identifier
+- film: Film name
+- slot_type: Type of seat
+- ticket_type: Type of ticket
+- ticket_price: Price of ticket
+- popcorn: Popcorn included
+- processed_at: Processing timestamp
+
+2. Sales Table
+-------------
+- orderid: Foreign key to tickets.orderid
+- cashier: Cashier identifier
+- saledate: Sale date
+- total: Total amount
+
+3. Films Table
+-------------
+- film_id: Primary key
+- film: Film name
+
+4. Rooms Table
+-------------
+- room_id: Primary key
+- room: Room name
+
+5. Film-Room Relationship Table
+-----------------------------
+- film_id: Foreign key to films.film_id
+- room_id: Foreign key to rooms.room_id
+
+6. Ticket Types Table
+-------------------
+- type_id: Primary key
+- ticket_type: Type of ticket
+- count: Number of unique customers for this ticket type
+
+7. Seat Types Table
+-----------------
+- seat_type_id: Primary key
+- slot_type: Type of seat
+
+8. Film Detailed Analysis Table
+----------------------------
+- film: Film name
+- total_tickets: Total number of tickets sold
+- total_revenue: Total revenue from ticket sales
+- avg_ticket_price: Average ticket price
+- single_seats: Number of single seat tickets
+- double_seats: Number of double seat tickets
+- total_seats: Total number of seats (single + double)
+- revenue_per_seat: Average revenue per seat
