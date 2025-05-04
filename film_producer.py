@@ -93,7 +93,7 @@ class FilmKafkaProducer:
 
 def main():
     # File path
-    file_path = r"D:\Connect_Pub_Sub_DTDM\data\Film.csv"
+    csv_file_path = 'D:\git_hub_post_dtdm\data\Film.csv'
     
     # Initialize producer
     producer = FilmKafkaProducer(
@@ -102,7 +102,7 @@ def main():
     )
     
     # Produce messages
-    producer.produce_messages(file_path, batch_size=100)
+    producer.produce_messages(csv_file_path, batch_size=100)
 
 if __name__ == "__main__":
     main() 

@@ -1,65 +1,150 @@
-2025-04-30 09:32:57,580 - __main__ - INFO - Created output directory: db_schema_ticket_data
-2025-04-30 09:32:57,582 - __main__ - INFO - Reading data from processed_ticket_data\processed_tickets.csv
-2025-04-30 09:32:57,726 - __main__ - INFO - Successfully read processed data: 35378 records
-2025-04-30 09:32:57,727 - __main__ - INFO - Columns in data: orderid, cashier, saledate, total, customerid, ticketcode, date, time, slot, room, film, slot_type, ticket_type, ticket_price, popcorn, processed_at
-2025-04-30 09:32:57,741 - __main__ - INFO - Sample data (first 5 rows):
-2025-04-30 09:32:57,829 - __main__ - INFO - 
+2025-05-04 09:07:55,562 - __main__ - INFO - Created output directory: db_schema_ticket_data
+2025-05-04 09:07:55,563 - __main__ - INFO - Reading data from processed_ticket_data\processed_tickets.csv
+2025-05-04 09:07:55,749 - __main__ - INFO - Successfully read processed data: 35474 records
+2025-05-04 09:07:55,749 - __main__ - INFO - Columns in data: orderid, cashier, saledate, total, customerid, ticketcode, date, time, slot, room, film, slot_type, ticket_type, ticket_price, popcorn, processed_at
+2025-05-04 09:07:55,763 - __main__ - INFO - Sample data (first 5 rows):
+2025-05-04 09:07:55,850 - __main__ - INFO - 
 Ticket types distribution:
-2025-04-30 09:32:57,830 - __main__ - INFO - Thành viên: 4451 unique customers
-2025-04-30 09:32:57,834 - __main__ - INFO - Tickets table: 35378 records
-2025-04-30 09:32:57,834 - __main__ - INFO - Sales table: 35378 records
-2025-04-30 09:32:57,835 - __main__ - INFO - Films table: 19 records
-2025-04-30 09:32:57,835 - __main__ - INFO - Rooms table: 4 records
-2025-04-30 09:32:57,835 - __main__ - INFO - Film-Room relationship table: 59 records
-2025-04-30 09:32:57,836 - __main__ - INFO - Ticket types table: 1 records
-2025-04-30 09:32:57,836 - __main__ - INFO - Seat types table: 2 records
-2025-04-30 09:32:57,836 - __main__ - INFO - Sample data from tickets table:
-2025-04-30 09:32:57,842 - __main__ - INFO - Sample data from films table:
-2025-04-30 09:32:58,034 - __main__ - INFO - Saved tickets.csv: 35378 records
-2025-04-30 09:32:58,035 - __main__ - INFO - File tickets.csv created with size: 5532284 bytes
-2025-04-30 09:32:58,051 - __main__ - INFO - Sample data from saved file tickets.csv:
-2025-04-30 09:32:58,129 - __main__ - INFO - Saved sales.csv: 35378 records
-2025-04-30 09:32:58,130 - __main__ - INFO - File sales.csv created with size: 1891745 bytes
-2025-04-30 09:32:58,144 - __main__ - INFO - Sample data from saved file sales.csv:
-2025-04-30 09:32:58,146 - __main__ - INFO -             orderid cashier             saledate    total
+2025-05-04 09:07:55,852 - __main__ - INFO - Thành viên: 4479 unique customers
+2025-05-04 09:07:55,857 - __main__ - INFO - Tickets table: 35474 records
+2025-05-04 09:07:55,857 - __main__ - INFO - Sales table: 35474 records
+2025-05-04 09:07:55,857 - __main__ - INFO - Films table: 19 records
+2025-05-04 09:07:55,858 - __main__ - INFO - Rooms table: 4 records
+2025-05-04 09:07:55,858 - __main__ - INFO - Film-Room relationship table: 59 records
+2025-05-04 09:07:55,858 - __main__ - INFO - Ticket types table: 1 records
+2025-05-04 09:07:55,859 - __main__ - INFO - Seat types table: 2 records
+2025-05-04 09:07:55,859 - __main__ - INFO - Sample data from tickets table:
+2025-05-04 09:07:55,867 - __main__ - INFO - Sample data from films table:
+2025-05-04 09:07:55,873 - __main__ - ERROR - Error converting to DB schema: 'hour'
+2025-05-04 09:07:55,873 - __main__ - ERROR - Error details:
+Traceback (most recent call last):
+  File "D:\git_hub_post_dtdm\ticket_schema_convert_db.py", line 194, in convert_to_db_schema
+    hourly_df = df.groupby('hour').agg({
+  File "D:\git_hub_post_dtdm\venv\lib\site-packages\pandas\core\frame.py", line 9183, in groupby
+    return DataFrameGroupBy(
+  File "D:\git_hub_post_dtdm\venv\lib\site-packages\pandas\core\groupby\groupby.py", line 1329, in __init__
+    grouper, exclusions, obj = get_grouper(
+  File "D:\git_hub_post_dtdm\venv\lib\site-packages\pandas\core\groupby\grouper.py", line 1043, in get_grouper
+    raise KeyError(gpr)
+KeyError: 'hour'
+2025-05-04 09:07:55,879 - __main__ - ERROR - Error processing data: 'hour'
+2025-05-04 09:07:55,880 - __main__ - ERROR - Error details:
+Traceback (most recent call last):
+  File "D:\git_hub_post_dtdm\ticket_schema_convert_db.py", line 436, in process_data
+    db_tables = self.convert_to_db_schema(df)
+  File "D:\git_hub_post_dtdm\ticket_schema_convert_db.py", line 194, in convert_to_db_schema
+    hourly_df = df.groupby('hour').agg({
+  File "D:\git_hub_post_dtdm\venv\lib\site-packages\pandas\core\frame.py", line 9183, in groupby
+    return DataFrameGroupBy(
+  File "D:\git_hub_post_dtdm\venv\lib\site-packages\pandas\core\groupby\groupby.py", line 1329, in __init__
+    grouper, exclusions, obj = get_grouper(
+  File "D:\git_hub_post_dtdm\venv\lib\site-packages\pandas\core\groupby\grouper.py", line 1043, in get_grouper
+    raise KeyError(gpr)
+KeyError: 'hour'
+2025-05-04 09:07:55,880 - __main__ - ERROR - Script failed: 'hour'
+2025-05-04 09:07:55,881 - __main__ - ERROR - Error details:
+Traceback (most recent call last):
+  File "D:\git_hub_post_dtdm\ticket_schema_convert_db.py", line 471, in main
+    converter.process_data()
+  File "D:\git_hub_post_dtdm\ticket_schema_convert_db.py", line 436, in process_data
+    db_tables = self.convert_to_db_schema(df)
+  File "D:\git_hub_post_dtdm\ticket_schema_convert_db.py", line 194, in convert_to_db_schema
+    hourly_df = df.groupby('hour').agg({
+  File "D:\git_hub_post_dtdm\venv\lib\site-packages\pandas\core\frame.py", line 9183, in groupby
+    return DataFrameGroupBy(
+  File "D:\git_hub_post_dtdm\venv\lib\site-packages\pandas\core\groupby\groupby.py", line 1329, in __init__
+    grouper, exclusions, obj = get_grouper(
+  File "D:\git_hub_post_dtdm\venv\lib\site-packages\pandas\core\groupby\grouper.py", line 1043, in get_grouper
+    raise KeyError(gpr)
+KeyError: 'hour'
+2025-05-04 09:09:04,951 - __main__ - INFO - Cleanup of old files completed
+2025-05-04 09:09:04,951 - __main__ - INFO - Reading data from processed_ticket_data\processed_tickets.csv
+2025-05-04 09:09:05,150 - __main__ - INFO - Successfully read processed data: 35474 records
+2025-05-04 09:09:05,151 - __main__ - INFO - Columns in data: orderid, cashier, saledate, total, customerid, ticketcode, date, time, slot, room, film, slot_type, ticket_type, ticket_price, popcorn, processed_at
+2025-05-04 09:09:05,168 - __main__ - INFO - Sample data (first 5 rows):
+2025-05-04 09:09:05,238 - __main__ - INFO - 
+Ticket types distribution:
+2025-05-04 09:09:05,239 - __main__ - INFO - Thành viên: 4479 unique customers
+2025-05-04 09:09:05,242 - __main__ - INFO - Tickets table: 35474 records
+2025-05-04 09:09:05,242 - __main__ - INFO - Sales table: 35474 records
+2025-05-04 09:09:05,242 - __main__ - INFO - Films table: 19 records
+2025-05-04 09:09:05,242 - __main__ - INFO - Rooms table: 4 records
+2025-05-04 09:09:05,243 - __main__ - INFO - Film-Room relationship table: 59 records
+2025-05-04 09:09:05,243 - __main__ - INFO - Ticket types table: 1 records
+2025-05-04 09:09:05,243 - __main__ - INFO - Seat types table: 2 records
+2025-05-04 09:09:05,243 - __main__ - INFO - Sample data from tickets table:
+2025-05-04 09:09:05,249 - __main__ - INFO - Sample data from films table:
+2025-05-04 09:09:05,330 - __main__ - INFO - Hourly analysis table: 17 records
+2025-05-04 09:09:05,331 - __main__ - INFO - Daily analysis table: 30 records
+2025-05-04 09:09:05,331 - __main__ - INFO - Monthly analysis table: 1 records
+2025-05-04 09:09:05,543 - __main__ - INFO - Saved tickets.csv: 35474 records
+2025-05-04 09:09:05,544 - __main__ - INFO - File tickets.csv created with size: 5547650 bytes
+2025-05-04 09:09:05,562 - __main__ - INFO - Sample data from saved file tickets.csv:
+2025-05-04 09:09:05,672 - __main__ - INFO - Saved sales.csv: 35474 records
+2025-05-04 09:09:05,673 - __main__ - INFO - File sales.csv created with size: 1896929 bytes
+2025-05-04 09:09:05,690 - __main__ - INFO - Sample data from saved file sales.csv:
+2025-05-04 09:09:05,693 - __main__ - INFO -             orderid cashier             saledate    total
 0  10006052019B0225  emp002  2019-05-06 16:40:43  90000.0
 1  10006052019B0225  emp002  2019-05-06 16:40:43  90000.0
 2  10022052019B0167  emp011  2019-05-22 20:30:28  90000.0
 3  10022052019B0167  emp011  2019-05-22 20:30:28  90000.0
 4  10130052019B0141  emp005  2019-05-30 19:28:44  90000.0
-2025-04-30 09:32:58,148 - __main__ - INFO - Saved films.csv: 19 records
-2025-04-30 09:32:58,149 - __main__ - INFO - File films.csv created with size: 675 bytes
-2025-04-30 09:32:58,159 - __main__ - INFO - Sample data from saved file films.csv:
-2025-04-30 09:32:58,165 - __main__ - INFO - Saved rooms.csv: 4 records
-2025-04-30 09:32:58,166 - __main__ - INFO - File rooms.csv created with size: 34 bytes
-2025-04-30 09:32:58,179 - __main__ - INFO - Sample data from saved file rooms.csv:
-2025-04-30 09:32:58,180 - __main__ - INFO -    room  room_id
+2025-05-04 09:09:05,695 - __main__ - INFO - Saved films.csv: 19 records
+2025-05-04 09:09:05,695 - __main__ - INFO - File films.csv created with size: 675 bytes
+2025-05-04 09:09:05,708 - __main__ - INFO - Sample data from saved file films.csv:
+2025-05-04 09:09:05,715 - __main__ - INFO - Saved rooms.csv: 4 records
+2025-05-04 09:09:05,716 - __main__ - INFO - File rooms.csv created with size: 34 bytes
+2025-05-04 09:09:05,729 - __main__ - INFO - Sample data from saved file rooms.csv:
+2025-05-04 09:09:05,730 - __main__ - INFO -    room  room_id
 0     3        1
 1     2        2
 2     1        3
 3     4        4
-2025-04-30 09:32:58,182 - __main__ - INFO - Saved film_room.csv: 59 records
-2025-04-30 09:32:58,183 - __main__ - INFO - File film_room.csv created with size: 337 bytes
-2025-04-30 09:32:58,195 - __main__ - INFO - Sample data from saved file film_room.csv:
-2025-04-30 09:32:58,197 - __main__ - INFO -    film_id  room_id
+2025-05-04 09:09:05,732 - __main__ - INFO - Saved film_room.csv: 59 records
+2025-05-04 09:09:05,733 - __main__ - INFO - File film_room.csv created with size: 336 bytes
+2025-05-04 09:09:05,744 - __main__ - INFO - Sample data from saved file film_room.csv:
+2025-05-04 09:09:05,746 - __main__ - INFO -    film_id  room_id
 0        1        1
 1        2        2
 2        3        3
 3        2        4
 4        1        3
-2025-04-30 09:32:58,200 - __main__ - INFO - Saved ticket_types.csv: 1 records
-2025-04-30 09:32:58,200 - __main__ - INFO - File ticket_types.csv created with size: 48 bytes
-2025-04-30 09:32:58,214 - __main__ - INFO - Sample data from saved file ticket_types.csv:
-2025-04-30 09:32:58,216 - __main__ - INFO -   ticket_type  count  type_id
-0  Thành viên   4451        1
-2025-04-30 09:32:58,219 - __main__ - INFO - Saved seat_types.csv: 2 records
-2025-04-30 09:32:58,220 - __main__ - INFO - File seat_types.csv created with size: 42 bytes
-2025-04-30 09:32:58,233 - __main__ - INFO - Sample data from saved file seat_types.csv:
-2025-04-30 09:32:58,269 - __main__ - INFO - Saved film_detailed_analysis.csv: 19 records
-2025-04-30 09:32:58,270 - __main__ - INFO - File film_detailed_analysis.csv created with size: 2025 bytes
-2025-04-30 09:32:58,281 - __main__ - INFO - Sample data from saved file film_detailed_analysis.csv:
-2025-04-30 09:32:58,287 - __main__ - INFO - 
+2025-05-04 09:09:05,748 - __main__ - INFO - Saved ticket_types.csv: 1 records
+2025-05-04 09:09:05,749 - __main__ - INFO - File ticket_types.csv created with size: 48 bytes
+2025-05-04 09:09:05,765 - __main__ - INFO - Sample data from saved file ticket_types.csv:
+2025-05-04 09:09:05,769 - __main__ - INFO -   ticket_type  count  type_id
+0  Thành viên   4479        1
+2025-05-04 09:09:05,772 - __main__ - INFO - Saved seat_types.csv: 2 records
+2025-05-04 09:09:05,773 - __main__ - INFO - File seat_types.csv created with size: 42 bytes
+2025-05-04 09:09:05,787 - __main__ - INFO - Sample data from saved file seat_types.csv:
+2025-05-04 09:09:05,793 - __main__ - INFO - Saved hourly_analysis.csv: 17 records
+2025-05-04 09:09:05,794 - __main__ - INFO - File hourly_analysis.csv created with size: 371 bytes
+2025-05-04 09:09:05,808 - __main__ - INFO - Sample data from saved file hourly_analysis.csv:
+2025-05-04 09:09:05,809 - __main__ - INFO -    hour  ticket_count      revenue
+0     7             8    1070000.0
+1     8           812  147460000.0
+2     9           757  123300000.0
+3    10          1514  223870000.0
+4    11           990  163755000.0
+2025-05-04 09:09:05,812 - __main__ - INFO - Saved daily_analysis.csv: 30 records
+2025-05-04 09:09:05,812 - __main__ - INFO - File daily_analysis.csv created with size: 884 bytes
+2025-05-04 09:09:05,825 - __main__ - INFO - Sample data from saved file daily_analysis.csv:
+2025-05-04 09:09:05,826 - __main__ - INFO -          date  ticket_count      revenue
+0  2019-05-01           827  223070000.0
+1  2019-05-02          1284  161370000.0
+2  2019-05-03           154   15615000.0
+3  2019-05-05          1906  265200000.0
+4  2019-05-06          1221  162675000.0
+2025-05-04 09:09:05,829 - __main__ - INFO - Saved monthly_analysis.csv: 1 records
+2025-05-04 09:09:05,830 - __main__ - INFO - File monthly_analysis.csv created with size: 50 bytes
+2025-05-04 09:09:05,841 - __main__ - INFO - Sample data from saved file monthly_analysis.csv:
+2025-05-04 09:09:05,842 - __main__ - INFO -    month  ticket_count       revenue
+0      5         35474  5.762750e+09
+2025-05-04 09:09:05,881 - __main__ - INFO - Saved film_detailed_analysis.csv: 19 records
+2025-05-04 09:09:05,882 - __main__ - INFO - File film_detailed_analysis.csv created with size: 2024 bytes
+2025-05-04 09:09:05,893 - __main__ - INFO - Sample data from saved file film_detailed_analysis.csv:
+2025-05-04 09:09:05,899 - __main__ - INFO - 
 Film Detailed Analysis Sample:
-2025-04-30 09:32:58,294 - __main__ - INFO - Generated schema documentation
-2025-04-30 09:32:58,295 - __main__ - INFO - Data conversion completed successfully
-2025-04-30 09:32:58,300 - __main__ - INFO - Script completed successfully
+2025-05-04 09:09:05,905 - __main__ - INFO - Generated schema documentation
+2025-05-04 09:09:05,905 - __main__ - INFO - Data conversion completed successfully
+2025-05-04 09:09:05,911 - __main__ - INFO - Script completed successfully

@@ -100,17 +100,31 @@ class TicketKafkaConsumer:
             df['total'] = pd.to_numeric(df['total'], errors='coerce')
             df['ticket_price'] = pd.to_numeric(df['ticket_price'], errors='coerce')
             
+            # Chuyển đổi cột thời gian
+            df['datetime'] = pd.to_datetime(df['date'] + ' ' + df['time'])
+            df['hour'] = df['datetime'].dt.hour
+            df['day'] = df['datetime'].dt.date
+            df['month'] = df['datetime'].dt.month
+            
             # Phân tích cơ bản
             stats = {
                 'total_tickets': len(df),
                 'total_revenue': df['total'].sum(),
                 'avg_ticket_price': df['ticket_price'].mean(),
                 'film_distribution': df['film'].value_counts().to_dict(),
-                'ticket_type_distribution': df.groupby('ticket_type')['customerid'].nunique().to_dict(),  # Đếm số thành viên theo loại vé
+                'ticket_type_distribution': df.groupby('ticket_type')['customerid'].nunique().to_dict(),
                 'room_distribution': df['room'].value_counts().to_dict(),
                 'slot_type_distribution': df['slot_type'].value_counts().to_dict(),
                 'popcorn_distribution': df['popcorn'].value_counts().to_dict(),
-                'sales_by_cashier': df.groupby('cashier')['total'].agg(['count', 'sum']).to_dict()
+                'sales_by_cashier': df.groupby('cashier')['total'].agg(['count', 'sum']).to_dict(),
+                
+                # Thêm phân tích theo thời gian
+                'hourly_ticket_sales': df.groupby('hour')['orderid'].count().to_dict(),
+                'hourly_revenue': df.groupby('hour')['total'].sum().to_dict(),
+                'daily_revenue': df.groupby('day')['total'].sum().to_dict(),
+                'monthly_revenue': df.groupby('month')['total'].sum().to_dict(),
+                'daily_ticket_sales': df.groupby('day')['orderid'].count().to_dict(),
+                'monthly_ticket_sales': df.groupby('month')['orderid'].count().to_dict()
             }
             
             # Phân tích chi tiết theo phim
@@ -179,6 +193,31 @@ class TicketKafkaConsumer:
                            columns=['Ticket Type', 'Unique Customers'])
             self.save_to_csv(ticket_type_df, 'ticket_type_distribution.csv')
             
+            # Lưu phân tích theo thời gian
+            # Phân tích theo giờ
+            hourly_analysis = pd.DataFrame({
+                'Hour': list(stats['hourly_ticket_sales'].keys()),
+                'Ticket_Sales': list(stats['hourly_ticket_sales'].values()),
+                'Revenue': list(stats['hourly_revenue'].values())
+            })
+            self.save_to_csv(hourly_analysis.to_dict('records'), 'hourly_analysis.csv')
+            
+            # Phân tích theo ngày
+            daily_analysis = pd.DataFrame({
+                'Date': list(stats['daily_revenue'].keys()),
+                'Ticket_Sales': list(stats['daily_ticket_sales'].values()),
+                'Revenue': list(stats['daily_revenue'].values())
+            })
+            self.save_to_csv(daily_analysis.to_dict('records'), 'daily_analysis.csv')
+            
+            # Phân tích theo tháng
+            monthly_analysis = pd.DataFrame({
+                'Month': list(stats['monthly_revenue'].keys()),
+                'Ticket_Sales': list(stats['monthly_ticket_sales'].values()),
+                'Revenue': list(stats['monthly_revenue'].values())
+            })
+            self.save_to_csv(monthly_analysis.to_dict('records'), 'monthly_analysis.csv')
+            
             # Log chi tiết kết quả phân tích
             logger.info("\nTicket Analysis Results:")
             logger.info(f"Total Tickets: {stats['total_tickets']}")
@@ -199,6 +238,27 @@ class TicketKafkaConsumer:
                 logger.info("- Phân bố loại ghế:")
                 for seat_type, count in film_data['Seat_Distribution'].items():
                     logger.info(f"  + {seat_type}: {count} vé")
+            
+            # Log thêm thông tin phân tích theo thời gian
+            logger.info("\nTime-based Analysis:")
+            
+            # Phân tích theo giờ
+            logger.info("\nHourly Analysis:")
+            peak_hour = max(stats['hourly_ticket_sales'].items(), key=lambda x: x[1])
+            logger.info(f"Peak hour for ticket sales: {peak_hour[0]}:00 with {peak_hour[1]} tickets")
+            
+            peak_revenue_hour = max(stats['hourly_revenue'].items(), key=lambda x: x[1])
+            logger.info(f"Peak hour for revenue: {peak_revenue_hour[0]}:00 with {peak_revenue_hour[1]:,.2f} revenue")
+            
+            # Phân tích theo ngày
+            logger.info("\nDaily Analysis:")
+            peak_day = max(stats['daily_revenue'].items(), key=lambda x: x[1])
+            logger.info(f"Highest revenue day: {peak_day[0]} with {peak_day[1]:,.2f} revenue")
+            
+            # Phân tích theo tháng
+            logger.info("\nMonthly Analysis:")
+            peak_month = max(stats['monthly_revenue'].items(), key=lambda x: x[1])
+            logger.info(f"Highest revenue month: {peak_month[0]} with {peak_month[1]:,.2f} revenue")
             
             return stats
             

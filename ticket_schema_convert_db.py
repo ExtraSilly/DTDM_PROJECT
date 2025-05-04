@@ -189,6 +189,39 @@ class DBSchemaConverter:
             logger.info("Sample data from films table:")
             logger.info(films_df.head().to_string())
             
+            # Create datetime columns for time-based analysis
+            df['datetime'] = pd.to_datetime(df['date'] + ' ' + df['time'])
+            df['hour'] = df['datetime'].dt.hour
+            df['day'] = df['datetime'].dt.date
+            df['month'] = df['datetime'].dt.month
+            
+            # Thêm các bảng phân tích theo thời gian
+            # Hourly Analysis
+            hourly_df = df.groupby('hour').agg({
+                'orderid': 'count',
+                'total': 'sum'
+            }).reset_index()
+            hourly_df.columns = ['hour', 'ticket_count', 'revenue']
+            
+            # Daily Analysis
+            daily_df = df.groupby('day').agg({
+                'orderid': 'count',
+                'total': 'sum'
+            }).reset_index()
+            daily_df.columns = ['date', 'ticket_count', 'revenue']
+            
+            # Monthly Analysis
+            monthly_df = df.groupby('month').agg({
+                'orderid': 'count',
+                'total': 'sum'
+            }).reset_index()
+            monthly_df.columns = ['month', 'ticket_count', 'revenue']
+            
+            # Log thông tin về các bảng mới
+            logger.info(f"Hourly analysis table: {len(hourly_df)} records")
+            logger.info(f"Daily analysis table: {len(daily_df)} records")
+            logger.info(f"Monthly analysis table: {len(monthly_df)} records")
+            
             return {
                 'tickets': tickets_df,
                 'sales': sales_df,
@@ -196,7 +229,10 @@ class DBSchemaConverter:
                 'rooms': rooms_df,
                 'film_room': film_room_df,
                 'ticket_types': ticket_types_df,
-                'seat_types': seat_types_df
+                'seat_types': seat_types_df,
+                'hourly_analysis': hourly_df,
+                'daily_analysis': daily_df,
+                'monthly_analysis': monthly_df
             }
             
         except Exception as e:
@@ -292,7 +328,25 @@ Database Schema Documentation for Ticket System
 - seat_type_id: Primary key
 - slot_type: Type of seat
 
-8. Film Detailed Analysis Table
+8. Hourly Analysis Table
+----------------------
+- hour: Hour of the day (0-23)
+- ticket_count: Number of tickets sold in this hour
+- revenue: Total revenue in this hour
+
+9. Daily Analysis Table
+---------------------
+- date: Date of sales
+- ticket_count: Number of tickets sold on this date
+- revenue: Total revenue on this date
+
+10. Monthly Analysis Table
+------------------------
+- month: Month number (1-12)
+- ticket_count: Number of tickets sold in this month
+- revenue: Total revenue in this month
+
+11. Film Detailed Analysis Table
 ----------------------------
 - film: Film name
 - total_tickets: Total number of tickets sold
@@ -395,6 +449,11 @@ Database Schema Documentation for Ticket System
             self.save_to_csv(db_tables['film_room'], 'film_room.csv')
             self.save_to_csv(db_tables['ticket_types'], 'ticket_types.csv')
             self.save_to_csv(db_tables['seat_types'], 'seat_types.csv')
+            
+            # Save time-based analysis tables
+            self.save_to_csv(db_tables['hourly_analysis'], 'hourly_analysis.csv')
+            self.save_to_csv(db_tables['daily_analysis'], 'daily_analysis.csv')
+            self.save_to_csv(db_tables['monthly_analysis'], 'monthly_analysis.csv')
             
             # Create film detailed analysis
             self.create_film_detailed_analysis(df)

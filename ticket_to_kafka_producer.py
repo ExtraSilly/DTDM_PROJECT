@@ -168,7 +168,7 @@ def main():
             topic='ticket'
         )
         
-        csv_file_path = 'D:/Connect_Pub_Sub_DTDM/data/Ticket.csv'
+        csv_file_path = 'D:\git_hub_post_dtdm\data\Ticket.csv'
         producer.process_tickets(
             file_path=csv_file_path,
             batch_size=100  # Giảm batch size để dễ debug

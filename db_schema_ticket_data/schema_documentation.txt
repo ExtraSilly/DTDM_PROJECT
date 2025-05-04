@@ -50,7 +50,25 @@ Database Schema Documentation for Ticket System
 - seat_type_id: Primary key
 - slot_type: Type of seat
 
-8. Film Detailed Analysis Table
+8. Hourly Analysis Table
+----------------------
+- hour: Hour of the day (0-23)
+- ticket_count: Number of tickets sold in this hour
+- revenue: Total revenue in this hour
+
+9. Daily Analysis Table
+---------------------
+- date: Date of sales
+- ticket_count: Number of tickets sold on this date
+- revenue: Total revenue on this date
+
+10. Monthly Analysis Table
+------------------------
+- month: Month number (1-12)
+- ticket_count: Number of tickets sold in this month
+- revenue: Total revenue in this month
+
+11. Film Detailed Analysis Table
 ----------------------------
 - film: Film name
 - total_tickets: Total number of tickets sold
