@@ -103,7 +103,7 @@ source venv/bin/activate
 
 4. Cài đặt các thư viện cần thiết:
 ```bash
-pip install google-cloud-bigquery pandas kafka-python psycopg2 python-dotenv
+pip install -r requirements.txt
 ```
 
 5. Cấu hình xác thực Google Cloud:
