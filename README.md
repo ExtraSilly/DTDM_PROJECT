@@ -106,14 +106,15 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-5. Cấu hình xác thực Google Cloud:
+5. Build docker-compose
 ```bash
-gcloud auth application-default login
+docker-compose up --build -d
 ```
 
 6. Khởi động Kafka và Zookeeper:
 ```bash
 docker-compose up -d
+docker-compose up -d kafka
 ```
 
 ## Cách chạy
