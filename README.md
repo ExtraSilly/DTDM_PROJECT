@@ -146,45 +146,6 @@ python ticket_import_postgre.py
 Lưu ý để chạy được bước 5 cần phải có file .json từ google cloud
 Các bước thực hiệndocker-compose up --build -d
 ```
-
-
-
-## Cách chạy
-
-1. Đảm bảo bạn đã cài đặt và cấu hình đầy đủ như hướng dẫn ở trên.
-
-2. Chạy các script theo thứ tự:
-```bash
-# Bước 1: Gửi dữ liệu lên Kafka
-python ticket_to_kafka_producer.py
-python customer_to_kafka_product.py
-python film_producer.py
-
-# Bước 2: Xử lý dữ liệu từ Kafka
-python ticket_kafka_consumer.py
-
-# Bước 3: Chuyển đổi schema
-python ticket_schema_convert_db.py
-
-# Bước 4: Import vào PostgreSQL
-python ticket_import_postgre.py
-
-# Bước 5: Upload lên BigQuery
-Lưu ý để chạy được bước 5 cần phải có file .json từ google cloud
-Các bước thực hiện
-+ Tạo project
-+ Enable Bigquery
-+ Vào Credentials và create credentials
-+ Trong IAM & Admin, chọn Service Accounts.
-+ Tạo một Service Account mới và cấp quyền BigQuery Admin cho tài khoản này.
-+ Tải về key JSON và lưu vào nơi bảo mật.
-+ Chạy các lệnh sau:
-+ export GOOGLE_APPLICATION_CREDENTIALS="path_to_your_service_account_key.json"
-+ echo $env:GOOGLE_APPLICATION_CREDENTIALS
-+ Sau đó chạy lệnh bên dưới:
-python upload.py
-```
-
 ## Mô tả các thành phần
 
 ### 1. Kafka Producer
