@@ -124,6 +124,10 @@ docker-compose up -d kafka
 2. Chạy các script theo thứ tự:
 ```bash
 # Bước 1: Gửi dữ liệu lên Kafka
+*** Tạo 3 topic để chứa dữ liệu trên kafka
+docker exec kafka kafka-topics --create --topic customer  --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+docker exec kafka kafka-topics --create --topic ticket  --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+docker exec kafka kafka-topics --create --topic film  --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1 
 python ticket_to_kafka_producer.py
 python customer_to_kafka_product.py
 python film_producer.py
