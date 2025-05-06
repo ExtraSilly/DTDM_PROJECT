@@ -147,11 +147,7 @@ Lưu ý để chạy được bước 5 cần phải có file .json từ google 
 Các bước thực hiệndocker-compose up --build -d
 ```
 
-6. Khởi động Kafka và Zookeeper:
-```bash
-docker-compose up -d
-docker-compose up -d kafka
-```
+
 
 ## Cách chạy
 
