@@ -135,6 +135,7 @@ python ticket_kafka_consumer.py
 python ticket_schema_convert_db.py
 
 # Bước 4: Import vào PostgreSQL
+Phải tạo bảng trước trong PostgreSql và cập nhật ở file .env và cả file py bên dưới
 python ticket_import_postgre.py
 
 # Bước 5: Upload lên BigQuery
