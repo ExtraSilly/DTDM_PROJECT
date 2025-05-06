@@ -129,7 +129,7 @@ docker exec kafka kafka-topics --create --topic customer  --bootstrap-server loc
 docker exec kafka kafka-topics --create --topic ticket  --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
 docker exec kafka kafka-topics --create --topic film  --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1 
 python ticket_to_kafka_producer.py
-python customer_to_kafka_product.py
+python customer_to_kafka_producer.py
 python film_producer.py
 
 # Bước 2: Xử lý dữ liệu từ Kafka
