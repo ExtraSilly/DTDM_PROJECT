@@ -6,7 +6,7 @@ from datetime import datetime
 import re
 
 # Update project and dataset information
-project_id = 'iconic-valve-446108-v7'
+project_id = ''
 dataset_id = 'ticket_data'
 
 def table_reference(project_id, dataset_id, table_id):
