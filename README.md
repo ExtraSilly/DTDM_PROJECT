@@ -160,6 +160,7 @@ Các bước thực hiện:
  + Tiếp theo chạy 2 lệnh sau:
     $env:GOOGLE_APPLICATION_CREDENTIALS = "C:\Path\<your_credentials_file>.json"
     echo $env:GOOGLE_APPLICATION_CREDENTIALS
+ + Cập nhật lại project_id = 'your_project_id' dataset_id = 'my_dataset'
  + Cuối cùng chạy lệnh 'python upload.py' để tải dữ liệu lên Bigquery
 ```
 ## Mô tả các thành phần
