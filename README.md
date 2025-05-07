@@ -144,7 +144,23 @@ python ticket_import_postgre.py
 
 # Bước 5: Upload lên BigQuery
 Lưu ý để chạy được bước 5 cần phải có file .json từ google cloud
-Các bước thực hiệndocker-compose up --build -d
+Các bước thực hiện:
+Để tải dữ liệu lên Bigquery trước tiên:
+ + Đăng nhập vào Google Cloud Console: Google Cloud Console
+ + Chọn Project mà bạn muốn lưu trữ dữ liệu.
+ + Kích hoạt BigQuery API:
+ + Vào API & Services → Library.
+ + Tìm kiếm BigQuery API và bật (Enable).
+ + Create Credentials Bigquery và cài đặt là Bigquery admin sau đó tải xuống file json 
+ + Mở BigQuery trên Google Cloud Console.
+ + Nhấp vào + Create Dataset.
+ + Nhập thông tin cho Dataset:
+ + Dataset ID: Tên của Dataset (Ví dụ: my_dataset).
+ + Data Location: Chọn vị trí lưu trữ (Ví dụ: asia-southeast1).
+ + Tiếp theo chạy 2 lệnh sau:
+    $env:GOOGLE_APPLICATION_CREDENTIALS = "C:\Path\<your_credentials_file>.json"
+    echo $env:GOOGLE_APPLICATION_CREDENTIALS
+ + Cuối cùng chạy lệnh 'python upload.py' để tải dữ liệu lên Bigquery
 ```
 ## Mô tả các thành phần
 
